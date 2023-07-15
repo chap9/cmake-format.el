@@ -19,6 +19,8 @@
 
 ;;; Code:
 
+(require 'cl)
+
 (defcustom cmake-format-command "cmake-format"
   "The 'cmake-format' command."
   :type 'string
@@ -79,7 +81,7 @@ a `before-save-hook'."
              ((equal action "d")
               (with-current-buffer target-buffer
                 (cmake-format--goto-line (- from line-offset))
-                (incf line-offset len)
+                (cl-incf line-offset len)
                 (cmake-format--delete-whole-line len)))
              (t
               (error "Invalid rcs patch or internal error in cmake-format--apply-rcs-patch")))))))
